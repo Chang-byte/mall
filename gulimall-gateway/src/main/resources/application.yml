@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: gulimall-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: product_route10000
+          uri: lb://gulimall-product #想要负载均衡到商品服务，商品服务必须要配置到注册中心Limain
+          # 注意nacos的服务注册中心(一般在public命名空间) 与 服务配置中心(一般创建一个服务独自的命名空间)
+          # 配置好两个serve-addr， 添加好注解
+          predicates:
+            - Path=/api/product/**  # 如果是以/api/ product下的所有请求 ，注意这里必须要和上面的/api/**区分开 越分小的必须要写在上面
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment} # /api/xxx  ---->  /xxx
+
+        - id: admin_route
+          uri: lb://renren-fast  # lb: 父负载均衡，到renren-fast(微服务名称) 所以在前面必须要把renren-fast添加到注册中心里面
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment} # /api/xxx ---> /renren-fast/xxx
+#  http://localhost:88/api/captcha.jpg?uuid=0654dfcb-ddb7-4f12-898c-095d6d4670f3
+#  经过Path的断言后 转换为 http://renren-fast:8080/api/captcha.jpg?uuid=0654dfcb-ddb7-4f12-898c-095d6d4670f3
+#  还需要 去掉中间的 /api/ (路径重写) http://renren-fast:8080/captcha.jpg?uuid=0654dfcb-ddb7-4f12-898c-095d6d4670f3
+server:
+  port: 88
