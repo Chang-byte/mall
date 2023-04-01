@@ -3,19 +3,19 @@ package com.chang.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
- 
+
+import com.chang.common.valid.AddGro;
+import com.chang.common.valid.UpdateGro;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import com.chang.gulimall.product.entity.BrandEntity;
 import com.chang.gulimall.product.service.BrandService;
 import com.chang.common.utils.PageUtils;
 import com.chang.common.utils.R;
 
+import javax.validation.Valid;
 
 
 /**
@@ -56,19 +56,19 @@ public class BrandController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody BrandEntity brand){
+    public R save(@Validated(value = AddGro.class) @RequestBody BrandEntity brand){
 		brandService.save(brand);
 
         return R.ok();
     }
 
     /**
-     * 修改
+     * 修改， 当关联表中的字段 在原来的表中进行了修改，关联表中的字段的数据必须要同步过来。
+     * 保证冗余字段的一致。
      */
-    @RequestMapping("/update")
-    public R update(@RequestBody BrandEntity brand){
-		brandService.updateById(brand);
-
+    @PostMapping("/update")
+    public R update(@Validated(value = UpdateGro.class) @RequestBody BrandEntity brand){
+		brandService.updateDetail(brand);
         return R.ok();
     }
 

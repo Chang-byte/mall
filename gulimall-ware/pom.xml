@@ -5,18 +5,20 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.1.RELEASE</version>
+        <version>2.1.8.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.chang.gulimall</groupId>
+    <groupId>com.atguigu.gulimall</groupId>
     <artifactId>gulimall-ware</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-ware</name>
-    <description>gulimall-ware</description>
+    <description>谷粒商城-仓储服务</description>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.chang.gulimall</groupId>
@@ -38,6 +40,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -55,7 +58,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.1.RELEASE</version>
             </plugin>
         </plugins>
     </build>

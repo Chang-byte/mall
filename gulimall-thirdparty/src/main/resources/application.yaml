@@ -1,0 +1,12 @@
+server:
+  port: 30000
+
+# 配置数据源
+spring:
+  cloud:
+    alicloud:
+      access-key: LTAI5tEZTFRUiygWd2DEuuwH
+      secret-key: zDO6VBiGNaRePaONjTYUasHcscWoX4
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+        bucket: mall-augenstern

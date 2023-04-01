@@ -1,5 +1,5 @@
 server:
-  port: 10000
+  port: 10001
 
 # 配置数据源
 spring:
@@ -8,6 +8,12 @@ spring:
     password: root
     url: jdbc:mysql://192.168.196.128:3306/gulimall_pms
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    alicloud:
+      access-key: LTAI5tEZTFRUiygWd2DEuuwH
+      secret-key: zDO6VBiGNaRePaONjTYUasHcscWoX4
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
 
 
 # 整合MP SQL映射文件
@@ -16,3 +22,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 0 # 0 代表删除
+      logic-not-delete-value: 1 # 1 代表删除
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
