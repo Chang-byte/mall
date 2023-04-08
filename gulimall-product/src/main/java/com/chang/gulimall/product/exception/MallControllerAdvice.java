@@ -1,4 +1,4 @@
-package com.chang.gulimall.product.exceotion;
+package com.chang.gulimall.product.exception;
 
 import com.chang.common.exception.BizCodeEnum;
 import com.chang.common.utils.R;

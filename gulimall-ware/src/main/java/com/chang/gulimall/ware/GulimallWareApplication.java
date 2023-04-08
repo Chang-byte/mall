@@ -1,9 +1,18 @@
 package com.chang.gulimall.ware;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
+@EnableDiscoveryClient
+@MapperScan("com.chang.gulimall.ware.dao")
+@EnableTransactionManagement
+@EnableFeignClients(basePackages = "com.chang.gulimall.ware.feign")
 public class GulimallWareApplication {
 
     public static void main(String[] args) {

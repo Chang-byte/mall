@@ -23,6 +23,24 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment} # /api/xxx  ---->  /xxx
         # 前端项目的发送的请求都带上api前缀
+        - id: member_route8000
+          uri: lb://gulimall-member #想要负载均衡到商品服务，商品服务必须要配置到注册中心Limain
+          # 注意nacos的服务注册中心(一般在public命名空间) 与 服务配置中心(一般创建一个服务独自的命名空间)
+          # 配置好两个serve-addr， 添加好注解
+          predicates: # 指定路径的断言
+            - Path=/api/member/**  # 如果是以/api/ member下的所有请求 ，注意这里必须要和上面的/api/**区分开 越分小的必须要写在上面
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment} # /api/xxx  ---->  /xxx
+        # 前端项目的发送的请求都带上api前缀
+        - id: ware_route11000
+          uri: lb://gulimall-ware #想要负载均衡到商品服务，商品服务必须要配置到注册中心Limain
+          # 注意nacos的服务注册中心(一般在public命名空间) 与 服务配置中心(一般创建一个服务独自的命名空间)
+          # 配置好两个serve-addr， 添加好注解
+          predicates: # 指定路径的断言
+            - Path=/api/ware/**  # 如果是以/api/ ware ，注意这里必须要和上面的/api/**区分开 越分小的必须要写在上面
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment} # /api/xxx  ---->  /xxx
+        # 前端项目的发送的请求都带上api前缀
         - id: admin_route
           uri: lb://renren-fast
           predicates:

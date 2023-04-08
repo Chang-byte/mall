@@ -62,8 +62,8 @@ public class GulimallProductApplicationTests {
 		// yourEndpoint填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
 		String endpoint = "oss-cn-hangzhou.aliyuncs.com";
 		// 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-		String accessKeyId = "LTAI5tEZTFRUiygWd2DEuuwH";
-		String accessKeySecret = "zDO6VBiGNaRePaONjTYUasHcscWoX4";
+		String accessKeyId = "LTAI5tC1KrYt7CKVJeR49Qyt";
+		String accessKeySecret = "wyqjliXxT0eXGSYIWOuOQHV0PWojwm";
 
 		// 创建ClientConfiguration。ClientConfiguration是OSSClient的配置类，可配置代理、连接超时、最大连接数等参数。
 		ClientBuilderConfiguration conf = new ClientBuilderConfiguration();

@@ -22,7 +22,7 @@ public class GulimallThirdpartyApplicationTests {
 		InputStream inputStream = new FileInputStream("E:\\ChromeDownLoad\\lala.jpg");
 
 		// 上传文件
-		ossClient.putObject("mall-augenstern","girls.jpg",inputStream);
+		ossClient.putObject("mall-augenstern","ggirls.jpg",inputStream);
 
 		// 关闭OSSClient。
 		ossClient.shutdown();

@@ -36,7 +36,6 @@ public class MemberLevelController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = memberLevelService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 

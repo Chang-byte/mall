@@ -44,7 +44,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     @Override
-    public List<CategoryEntity> liwtWithTree() {
+    public List<CategoryEntity> listWithTree() {
         // 1. 查出所有分类
         List<CategoryEntity> entities = this.list(null);
         // 2. 组装成父子的结构

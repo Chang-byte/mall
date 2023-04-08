@@ -7,7 +7,11 @@ import com.chang.gulimall.product.service.BrandService;
 import com.chang.gulimall.product.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -31,6 +35,10 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
 
     @Resource
     private CategoryService categoryService;
+
+    @Resource
+    private CategoryBrandRelationDao relationDao;
+    
 
 
     @Override
@@ -72,6 +80,26 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     public void updateCategory(Long catId, String name) {
         // 通过写sql去修改
         this.baseMapper.updateCategory(catId, name);
+    }
+
+    /**
+     * 查询分类关联的所有品牌
+     * @param catId
+     * @return
+     */
+    @Override
+    public List<BrandEntity> getBrandsByCatId(Long catId) {
+        List<CategoryBrandRelationEntity> catelogId = relationDao.selectList(
+                new QueryWrapper<CategoryBrandRelationEntity>()
+                        .eq("catelog_id", catId));
+        
+        // 主要是为了代码的复用
+        List<BrandEntity> collect = catelogId.stream().map(item -> {
+            Long brandId = item.getBrandId();
+            BrandEntity entity = brandService.getById(brandId);
+            return entity;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
 }
